@@ -3,19 +3,11 @@ from tree_sitter import Language, Parser
 
 parser = Parser(Language(tspython.language()))
 
-kode = b"""
-def sapa(nama):
-    return "Halo, " + nama
-"""
+# kode = b"x = 1\n"
+kode = b"x = 1+2\n"
 
 tree = parser.parse(kode)
+print(tree.root_node)
 
-function_node = tree.root_node.named_children[0]
-
-print("Menggunakan children:")
-for c in function_node.children:
+for c in tree.root_node.children[0].children:
     print(c.type, "bernama" if c.is_named else "anonim")
-
-print("\nMenggunakan named_children:")
-for c in function_node.named_children:
-    print(c.type, "bernama")

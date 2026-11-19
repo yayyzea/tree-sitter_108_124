@@ -2,6 +2,7 @@
 import tree_sitter_python as tspython
 from tree_sitter import Language, Parser
 
+# Menyiapkan parser Python
 parser = Parser(Language(tspython.language()))
 
 # Contoh kode dengan Syntax Error
@@ -12,10 +13,13 @@ if nilai >= 75
     print("Lulus")
 else:
     print("Tidak Lulus")
+
+def sapa(nama)
+    return "Halo, " + nama
 """
 
+# Melakukan parsing
 tree_error = parser.parse(kode_error)
-
 
 # Memeriksa Syntax Error
 print("Pengujian Syntax Error:")
