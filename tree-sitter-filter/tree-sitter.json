@@ -9,6 +9,7 @@
       "file-types": [
         "filter"
       ],
+      "highlights": "queries/highlights.scm",
       "injection-regex": "^filter$",
       "class-name": "TreeSitterFilter"
     }
