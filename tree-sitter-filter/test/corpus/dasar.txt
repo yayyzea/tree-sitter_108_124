@@ -1,0 +1,113 @@
+==================
+perbandingan sederhana
+==================
+
+status = "open"
+
+---
+
+(query
+  (comparison
+    (identifier)
+    (string)))
+
+==================
+perbandingan angka
+==================
+
+priority > 2
+
+---
+
+(query
+  (comparison
+    (identifier)
+    (number)))
+
+==================
+prioritas and dan or
+==================
+
+status = "open" or priority > 2 and owner = "budi"
+
+---
+
+(query
+  (or_expression
+    (comparison
+      (identifier)
+      (string))
+    (and_expression
+      (comparison
+        (identifier)
+        (number))
+      (comparison
+        (identifier)
+        (string)))))
+
+==================
+ekspresi dengan tanda kurung
+==================
+
+(status = "open" or status = "pending") and active = true
+
+---
+
+(query
+  (and_expression
+    (parenthesized_expression
+      (or_expression
+        (comparison
+          (identifier)
+          (string))
+        (comparison
+          (identifier)
+          (string))))
+    (comparison
+      (identifier)
+      (boolean))))
+
+==================
+not dan boolean
+==================
+
+not status = "closed"
+active = true
+
+---
+
+(query
+  (not_expression
+    (comparison
+      (identifier)
+      (string)))
+  (comparison
+    (identifier)
+    (boolean)))
+
+==================
+operator in
+==================
+
+status in ("open", "pending")
+
+---
+
+(query
+  (in_expression
+    (identifier)
+    (string)
+    (string)))
+
+==================
+operator contains
+==================
+
+name contains "andi"
+
+---
+
+(query
+  (contains_expression
+    (identifier)
+    (string)))
