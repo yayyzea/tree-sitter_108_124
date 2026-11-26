@@ -1,0 +1,23 @@
+TREE-SITTER SEMANTIC ANALYZER
+==================================================
+Source file: C:\POLBAN - SEMESTER 3\PLP\PLP - PROJECT\Tree-Sitter\tree-sitter_108_124\Praktikum-TreeSitter-OrderManagement\simple_order_management.py
+Parsing status: SUCCESS
+Total semantic error: 6
+
+[SEM-01] Argument Type Mismatch (Line 48)
+  Parameter tax_rate bertipe float, tetapi argumen yang diberikan adalah string "0.11".
+
+[SEM-02] Undefined Attribute (Line 53)
+  Class Order tidak mendefinisikan atribut id.
+
+[SEM-03] Undefined Variable (Line 65)
+  Variabel order_status digunakan tanpa deklarasi.
+
+[SEM-04] Undefined Attribute (Line 73)
+  Class Product tidak mendefinisikan atribut quantity.
+
+[SEM-05] Type Incompatibility (Line 76)
+  Operasi penambahan string dengan nilai numerik tidak kompatibel.
+
+[SEM-06] Return Type Mismatch (Line 76)
+  Fungsi dideklarasikan mengembalikan float, tetapi return menghasilkan string.
