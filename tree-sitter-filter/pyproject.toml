@@ -1,0 +1,30 @@
+[build-system]
+build-backend = "setuptools.build_meta"
+requires = [ "setuptools>=62.4.0", "wheel" ]
+
+[project]
+authors = [ { email = "kaylamutiara1206@gmail.com & azkiyaz65@gmail.com", name = "Kayla & Zahra" } ]
+classifiers = [
+  "Intended Audience :: Developers",
+  "Topic :: Software Development :: Compilers",
+  "Topic :: Text Processing :: Linguistic",
+  "Typing :: Typed",
+]
+description = "Parser bahasa filter sederhana untuk membuat aturan penyaringan data."
+keywords = [ "incremental", "parsing", "tree-sitter", "filter" ]
+license.text = "MIT"
+name = "tree-sitter-filter"
+readme = "README.md"
+requires-python = ">=3.10"
+version = "0.1.0"
+
+[project.urls]
+Funding = ""
+Homepage = "https://github.com/yayyzea/tree-sitter_108_124"
+
+[project.optional-dependencies]
+core = [ "tree-sitter~=0.24" ]
+
+[tool.cibuildwheel]
+build = "cp310-*"
+build-frontend = "build"
