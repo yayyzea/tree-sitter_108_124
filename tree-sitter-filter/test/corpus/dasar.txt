@@ -89,13 +89,14 @@ active = true
 operator in
 ==================
 
-status in ("open", "pending")
+status in ("open", "pending", "closed")
 
 ---
 
 (query
   (in_expression
     (identifier)
+    (string)
     (string)
     (string)))
 

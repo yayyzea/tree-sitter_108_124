@@ -49,9 +49,9 @@ export default grammar({
     )),
 
     comparison: $ => seq(
-      $.identifier,
-      choice('=', '!=', '>', '<', '>=', '<='),
-      choice($.string, $.number, $.boolean)
+      field('field', $.identifier),
+      field('operator', choice('=', '!=', '>', '<', '>=', '<=')),
+      field('value', choice($.string, $.number, $.boolean))
     ),
 
     in_expression: $ => seq(
