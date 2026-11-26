@@ -1,9 +1,7 @@
-TUGAS 1 - TREE-SITTER: HASIL PENGAMATAN
-=======================================
+TUGAS 1 - Membaca pohon
+------------------------------------------------------------
 
-------------------------------------------------------------
 EKSPERIMEN 1 - FUNCTION
-------------------------------------------------------------
 
 Kode yang digunakan pada t1.py:
 
@@ -39,8 +37,8 @@ parameters bernama
 block bernama
 
 ------------------------------------------------------------
+
 EKSPERIMEN 2 - IF / ELSE
-------------------------------------------------------------
 
 kode = b"""
 if x > 10:
@@ -84,8 +82,8 @@ block bernama
 else_clause bernama
 
 ------------------------------------------------------------
+
 EKSPERIMEN 3 - CLASS DAN METHOD
-------------------------------------------------------------
 
 Ganti variabel kode di t1.py menjadi:
 
@@ -121,8 +119,8 @@ identifier bernama
 block bernama
 
 ------------------------------------------------------------
+
 EKSPERIMEN 4 - NAMED DAN ANONYMOUS NODES
-------------------------------------------------------------
 
 kode = b"""
 def sapa(nama):
@@ -145,8 +143,8 @@ parameters bernama
 block bernama
 
 ------------------------------------------------------------
+
 EKSPERIMEN 5 - SYNTAX ERROR
-------------------------------------------------------------
 
 kode = b"""
 def sapa(nama)
@@ -176,3 +174,82 @@ def anonim
 identifier bernama
 parameters bernama
 expression_statement bernama
+
+====================================================================================
+
+TUGAS 3 - QUERY PERTAMA
+------------------------------------------------------------
+
+(identifier) @id
+Output:
+@id  baris1:os
+@id  baris2:pathlib
+@id  baris2:Path
+@id  baris4:sapa
+@id  baris4:nama
+@id  baris5:print
+@id  baris5:nama
+@id  baris7:tambah
+@id  baris7:a
+@id  baris7:b
+@id  baris8:hasil
+@id  baris8:a
+@id  baris8:b
+@id  baris9:print
+@id  baris9:hasil
+@id  baris10:hasil
+@id  baris12:Mahasiswa
+@id  baris13:belajar
+@id  baris13:self
+@id  baris14:print
+@id  baris16:x
+@id  baris17:print
+@id  baris17:x
+
+------------------------------------------------------------
+
+(function_definition name: (identifier) @nama)
+Output:
+@nama  baris4:sapa
+@nama  baris7:tambah
+@nama  baris13:belajar
+
+------------------------------------------------------------
+
+parameters: (parameters) @params
+Output:
+@params baris4:(nama)
+@params baris7:(a, b)
+@params baris13:(self)
+
+------------------------------------------------------------
+
+Pemanggilan print
+
+(call
+  function: (identifier) @fungsi
+  arguments: (argument_list)
+  (#eq? @fungsi "print"))
+Output:
+@fungsi baris5:print
+@fungsi baris9:print
+@fungsi baris14:print
+@fungsi baris17:print
+
+------------------------------------------------------------
+
+Import:
+
+import os
+from pathlib import Path
+Output:
+module [1:0]
+  import_statement [1:0]
+    name: dotted_name [1:7]
+      identifier [1:7]
+  import_from_statement [2:0]
+    module_name: dotted_name [2:5]
+      identifier [2:5]
+    name: dotted_name [2:20]
+      identifier [2:20]
+
