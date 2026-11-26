@@ -1,0 +1,178 @@
+TUGAS 1 - TREE-SITTER: HASIL PENGAMATAN
+=======================================
+
+------------------------------------------------------------
+EKSPERIMEN 1 - FUNCTION
+------------------------------------------------------------
+
+Kode yang digunakan pada t1.py:
+
+kode = b"""
+def sapa(nama):
+    print("Halo", nama)
+"""
+
+PREDIKSI TREE :
+
+(module
+  (function_definition
+    name: (identifier)
+    parameters: (parameters (identifier))
+    body: (block
+      (expression_statement
+        (call
+          function: (identifier)
+          arguments: (argument_list
+            (string
+              (string_start)
+              (string_content)
+              (string_end))
+            (identifier)))))))
+
+
+HASIL AKTUAL:
+(module (function_definition name: (identifier) parameters: (parameters (identifier)) body: (block (expression_statement (call function: (identifier) arguments: (argument_list (string (string_start) (string_content) (string_end)) (identifier)))))))
+def anonim
+identifier bernama
+parameters bernama
+: anonim
+block bernama
+
+------------------------------------------------------------
+EKSPERIMEN 2 - IF / ELSE
+------------------------------------------------------------
+
+kode = b"""
+if x > 10:
+    print("besar")
+else:
+    print("kecil")
+"""
+
+PREDIKSI TREE :
+(module
+  (if_statement
+    condition: (comparison_operator
+      (identifier)
+      (integer))
+    consequence: (block
+      (expression_statement
+        (call
+          function: (identifier)
+          arguments: (argument_list
+            (string
+              (string_start)
+              (string_content)
+              (string_end))))))
+    alternative: (else_clause
+      (block
+        (expression_statement
+          (call
+            function: (identifier)
+            arguments: (argument_list
+              (string
+                (string_start)
+                (string_content)
+                (string_end)))))))))
+
+HASIL AKTUAL :
+(module (if_statement condition: (comparison_operator (identifier) (integer)) consequence: (block (expression_statement (call function: (identifier) arguments: (argument_list (string (string_start) (string_content) (string_end)))))) alternative: (else_clause body: (block (expression_statement (call function: (identifier) arguments: (argument_list (string (string_start) (string_content) (string_end)))))))))
+if anonim
+comparison_operator bernama
+: anonim
+block bernama
+else_clause bernama
+
+------------------------------------------------------------
+EKSPERIMEN 3 - CLASS DAN METHOD
+------------------------------------------------------------
+
+Ganti variabel kode di t1.py menjadi:
+
+kode = b"""
+class Mahasiswa:
+    def sapa(self):
+        print("Halo")
+"""
+
+PREDIKSI TREE :
+(module
+  (class_definition
+    name: (identifier)
+    body: (block
+      (function_definition
+        name: (identifier)
+        parameters: (parameters (identifier))
+        body: (block
+          (expression_statement
+            (call
+              function: (identifier)
+              arguments: (argument_list
+                (string
+                  (string_start)
+                  (string_content)
+                  (string_end))))))))))
+
+HASIL AKTUAL :
+(module (class_definition name: (identifier) body: (block (function_definition name: (identifier) parameters: (parameters (identifier)) body: (block (expression_statement (call function: (identifier) arguments: (argument_list (string (string_start) (string_content) (string_end))))))))))
+class anonim
+identifier bernama
+: anonim
+block bernama
+
+------------------------------------------------------------
+EKSPERIMEN 4 - NAMED DAN ANONYMOUS NODES
+------------------------------------------------------------
+
+kode = b"""
+def sapa(nama):
+    print("Halo", nama)
+"""
+
+PREDIKSI TREE :
+def anonim
+identifier bernama
+parameters bernama
+: anonim
+block bernama
+
+HASIL AKTUAL :
+(module (function_definition name: (identifier) parameters: (parameters (identifier)) body: (block (expression_statement (call function: (identifier) arguments: (argument_list (string (string_start) (string_content) (string_end)) (identifier)))))))
+def anonim
+identifier bernama
+parameters bernama
+: anonim
+block bernama
+
+------------------------------------------------------------
+EKSPERIMEN 5 - SYNTAX ERROR
+------------------------------------------------------------
+
+kode = b"""
+def sapa(nama)
+    print("Halo", nama)
+"""
+
+PREDIKSI TREE :
+(module
+  (function_definition
+    name: (identifier)
+    parameters: (parameters (identifier))
+    body: (block
+      (expression_statement
+        (call
+          function: (identifier)
+          arguments: (argument_list
+            (string
+              (string_start)
+              (string_content)
+              (string_end))
+            (identifier)))))
+  (ERROR))
+
+HASIL AKTUAL :
+(module (ERROR (identifier) (parameters (identifier)) (expression_statement (call function: (identifier) arguments: (argument_list (string (string_start) (string_content) (string_end)) (identifier))))))
+def anonim
+identifier bernama
+parameters bernama
+expression_statement bernama
